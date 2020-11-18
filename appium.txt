@@ -1,0 +1,62 @@
+sdk software development kit
+android sdk下载地址
+https://www.androiddevtools.cn/
+
+配置SDK路径
+ANDROID_HOME
+C:\android-sdk-windows
+
+jdk java development kit
+配置jdk路径：
+%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;%JAVA_HOME%\jre\bin;%JAVA_HOME%\bin;C:\Python38\Scripts\;C:\Python38\;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin
+
+夜神模拟器下载地址：
+https://www.yeshen.com/
+
+adb 命令
+发送1000条伪随机事件
+adb shell monkey 1000
+
+列出所有的包名
+adb shell pm list packages
+
+获取当前启动的app的包名
+adb shell dumpsys | find "mFocusedActivity"
+
+获取指定app安装包的包名
+aapt dump badging d:\baiduwenku_6520.apk
+
+安装app
+adb install d:\baiduwenku_6520.apk
+
+卸载app
+adb uninstall com.baidu.wenku
+
+向指定的app发送伪随机事件
+adb shell monkey -p com.android.browser 1000
+
+向多个app发送伪随机事件
+adb shell monkey -p com.android.browser -p com.baidu.wenku 1000
+
+输出日志 -v表示日志级别
+adb shell monkey -p com.android.browser -v 1000
+adb shell monkey -p com.android.browser -v -v 1000
+adb shell monkey -p com.android.browser -v -v -v 1000
+
+重定向日志到文件中
+覆盖
+adb shell monkey -p com.android.browser -v 1000 > d:\monkey.log
+追加
+adb shell monkey -p com.android.browser -v 1000 >> d:\monkey.log
+
+添加事件延时
+adb shell monkey -p com.mt.mtxx.mtxx --throttle 100 -v -v -v 100
+
+指定伪随机事件种子值（重现伪随机事件）
+adb shell monkey -p com.mt.mtxx.mtxx --throttle 100 -s 1603714235972 -v -v -v 100
+
+忽略崩溃
+adb shell monkey -p com.mt.mtxx.mtxx --ingore-crashes -v 1000
+
+指定伪随机事件序列中特定事件的百分比
+adb shell monkey -p com.android.browser -v --pct-touch 50 100
